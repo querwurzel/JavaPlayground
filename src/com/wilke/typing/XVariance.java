@@ -7,33 +7,36 @@ import java.util.List;
 public class XVariance {
 	
 	/**
-	 * Implementation must be completely independent of the generic type
-	 * because no assumptions can be made about it.
+	 * Unbounded wildcard generic type:
+	 * Implementation must be completely independent of the type
+	 * since no assumptions can be made about the types.
 	 */
-	public static List<?> numElementsInCommon(List<?> pre, List<?> post) {
-		int number = Math.min(pre.size(), post.size());
-		List<?> result = new ArrayList<>();
+	public static int numElementsInCommon(List<?> l1, List<?> l2) {
+		return Math.min(l1.size(), l2.size());
+	}
+	
+	/**
+	 * Now at least the assumption that the collections share the same type can be made!
+	 */
+	public static <T> List<T> numElementsWithSameTypeInCommon(List<T> l1, List<T> l2) {
+		int minLength = Math.min(l1.size(), l2.size());
+		List<T> result = new ArrayList<>();
 		
-		for (int idx = 0; idx < number; idx++)
-			result.add(null);
+		for (int idx = 0; idx < minLength; idx++) {
+			result.add(l1.get(idx));
+			result.add(l2.get(idx));
+		}
 		
 		return result;
 	}
 	
 	/**
-	 * Now at least the assumption that the collections share the same type can be made!
-	 * Method cannot have same name as the <?> variant as Java generics are erased at runtime
-	 * and so the methods would share the same signature during runtime!
+	 * Method cannot have same name as the generic type information in Java are erased at runtime.
+	 * Hence this method would have the same name as the method above.
 	 */
-	public static <T> List<T> numElementsWithSameTypeInCommon(List<T> pre, List<T> post) {
-		int number = Math.min(pre.size(), post.size());
-		List<T> result = new ArrayList<>();
-		
-		for (int idx = 0; idx < number; idx++)
-			result.add(pre.get(idx));
-		
-		return result;
-	}
+//	public static List<?> numElementsWithSameTypeInCommon(List<?> l1, List<?> l2) {
+//		return null;
+//	}
 	
 	public static void covariantArrays() {
 		Object[] objects = new Object[] { new Object() };
@@ -41,16 +44,11 @@ public class XVariance {
 		
 		objects = strings; // arrays are covariant
 		
-		for (int idx = 0; idx < objects.length; idx++)
-			System.out.println(objects[idx]);
+		assert objects == strings;
 	}
 	
 	public static void main(String[] args) {
 		covariantArrays();
-		
-		List<Object> stack = new ArrayList<>();
-		// generics are invariant
-//		stack = new ArrayList<Integer>();
 		
 		// wont work, primitives cannot be used as generic type
 //		List<int> numbers = new ArrayList<>();
@@ -58,6 +56,11 @@ public class XVariance {
 //		// ugly but since arrays are objects ..
 		List<int[]> numbers = new ArrayList<>();
 		
+		
+		
+		List<Object> stack = new ArrayList<>();
+		// generics are invariant
+//		stack = new ArrayList<Integer>();
 		
 		/**
 		 * PECS mnemonics
@@ -69,14 +72,14 @@ public class XVariance {
 		
 		// won't compile
 //		Integer it1 = covariant.get(0);
-		// any object can only be assumed to be at least of type Object
-		Object it1 = covariant.get(0);
+		// any object of the list can only be assumed to be at least of type Object
+		Object item = covariant.get(0);
 		
 		List<? super Integer> contravariant = new ArrayList<Object>();
 		
 		// won't compile
 //		contravariant.add(new Object());
-		// any object passed to the list must be at most of type Integer
+		// only objects of type Integer (the superclass) can be added to the list as type safety is guaranteed
 		contravariant.add(new Integer(4711));
 	}
 }

@@ -50,10 +50,10 @@ public class DefaultSerialization {
 		public String[] content;
 		private final String signature;
 		
-		// static variables are not serialised
+		// transient variables are not serialised
 		public transient String transString;
 		
-		// no effect on serialisation
+		// volatile has no effect on serialisation
 		public volatile String volatString;
 		
 		// static variables are not serialised
@@ -79,10 +79,10 @@ public class DefaultSerialization {
 			if (!this.signature.equals(pojo.signature))
 				return false;
 			
-			if (!Arrays.equals(this.content, pojo.content))
+			if (!this.volatString.equals(pojo.volatString))
 				return false;
 			
-			if (!this.volatString.equals(pojo.volatString))
+			if (!Arrays.equals(this.content, pojo.content))
 				return false;
 
 			return true;
