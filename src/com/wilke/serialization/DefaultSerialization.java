@@ -57,7 +57,15 @@ public class DefaultSerialization {
 		public volatile String volatString;
 		
 		// static variables are not serialised
-		public static String staticString = "staticString";
+		public static String staticString;
+		
+		static {
+			staticString = "staticString";
+		}
+		
+		{
+			System.out.println("Pojo constructed");
+		}
 
 		public Pojo() {
 			this.headline = "Headline";

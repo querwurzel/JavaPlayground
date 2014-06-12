@@ -4,13 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * JVM: -verbose:gc -XX:+PrintGCDetails -Xloggc:/home/stefan/gc.log
+ * JVM: -verbose:gc -XX:+PrintGCDetails -Xloggc:/tmp/gc.log
  */
 public class Container {
 	@SuppressWarnings("unused")
-	private byte[] waste = new byte[1024_000];
+	private final byte[] waste = new byte[1024_000];
 
-	private static long Counter = 1;
+	private static volatile long Counter = 1;
 	private final  long Id;
 	
 	public Container() {
@@ -34,11 +34,8 @@ public class Container {
     }
     
     public static void main(String[] args) {
-    	boolean heap = true;
-    	
-    	if (heap)
-    		oomTheHeap();
-    	else
-    		oomTheStack();
+		oomTheHeap();
+
+		oomTheStack();
     }
 }

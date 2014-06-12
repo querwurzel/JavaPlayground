@@ -5,7 +5,7 @@ import com.wilke.classes.OuterClass.StaticNestedClass;
 
 public class OuterClass {
 	
-	private String secret = "4711";
+	private final String secret = "4711";
 
 	public static class StaticNestedClass {
 		@Override
