@@ -96,54 +96,54 @@ public class Dispatching {
 		
 		MultipleDispatching();
 	}
-}
 
-class Fruit {
-	public void eatMe(Animal animal) {
-		animal.eat(this);
+	static class Fruit {
+		public void eatMe(Animal animal) {
+			animal.eat(this);
+		}
 	}
-}
 
-class Apple extends Fruit {
-	/**
-	 * Notice: without overriding the Superclass method is dispatched.
-	 */
-	@Override
-	public void eatMe(Animal animal) {
-		// works because now dynamic dispatch is used
-		animal.eat(this);
+	static class Apple extends Fruit {
+		/**
+		 * Notice: without overriding the Superclass method is dispatched.
+		 */
+		@Override
+		public void eatMe(Animal animal) {
+			// works because now dynamic dispatch is used
+			animal.eat(this);
+		}
 	}
-}
 
-class Peach extends Fruit {
-	@Override
-	public void eatMe(Animal animal) {
-		animal.eat(this);
+	static class Peach extends Fruit {
+		@Override
+		public void eatMe(Animal animal) {
+			animal.eat(this);
+		}
 	}
-}
 
-class Animal {
-	void eat(Fruit fruit) {
-		System.out.println("The animal eats a fruit");
-	}
-	
-	void eat(Apple fruit) {
-		System.out.println("The animal eats an apple.");
-	}
-}
+	static class Animal {
+		void eat(Fruit fruit) {
+			System.out.println("The animal eats a fruit");
+		}
 
-class Elephant extends Animal {
-	@Override
-	void eat(Fruit fruit) {
-		System.out.println("The elephant eats a Fruit.");
+		void eat(Apple fruit) {
+			System.out.println("The animal eats an apple.");
+		}
 	}
-	
-	@Override
-	void eat(Apple fruit) {
-		System.out.println("The elephant eats an Apple");
-	}
-	
-	void eat(Peach fruit) {
-		System.out.println("The Peach was fermented. The elephant laughs.");
+
+	static class Elephant extends Animal {
+		@Override
+		void eat(Fruit fruit) {
+			System.out.println("The elephant eats a Fruit.");
+		}
+
+		@Override
+		void eat(Apple fruit) {
+			System.out.println("The elephant eats an Apple");
+		}
+
+		void eat(Peach fruit) {
+			System.out.println("The Peach was fermented. The elephant laughs.");
+		}
 	}
 }
