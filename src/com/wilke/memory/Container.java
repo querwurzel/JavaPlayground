@@ -10,7 +10,7 @@ public class Container {
 	@SuppressWarnings("unused")
 	private final byte[] waste = new byte[1024_000];
 
-	private static volatile long Counter = 1;
+	private static long Counter = 1;
 	private final  long Id;
 	
 	public Container() {
