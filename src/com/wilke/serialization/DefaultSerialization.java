@@ -69,7 +69,7 @@ public class DefaultSerialization {
 
 		public Pojo() {
 			this.headline = "Headline";
-			this.content = new String[] { "C1", "C2", "C3" };
+			this.content = new String [] { "C1", "C2", "C3" };
 			this.signature = "Signature";
 			this.transString = "transString";
 			this.volatString = "staticString";
