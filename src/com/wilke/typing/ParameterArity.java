@@ -9,7 +9,6 @@ public class ParameterArity {
 	
 	// but ..!!
 	public String[] array;
-
 	public ParameterArity() {
 		// won't compile
 //		this.array = { "Hello", "Kitty" };
