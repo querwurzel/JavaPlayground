@@ -10,7 +10,7 @@ public class ThisEscape {
 			@Override
 			public void run() {
 				for (int idx = 0; idx < 1000; idx++)
-					System.out.println(name); // access to outer class properties
+					System.out.println(ThisEscape.this.name); // access to outer class properties
 			}
 		}).start();
 

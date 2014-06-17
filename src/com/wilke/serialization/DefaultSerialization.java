@@ -77,7 +77,8 @@ public class DefaultSerialization {
 
 		@Override
 		public boolean equals(Object o) {
-			if (o == null || !(o instanceof Pojo))
+			// instanceof can handle NULL values !!!
+			if (!(o instanceof Pojo))
 				return false;
 			
 			Pojo pojo = (Pojo)o;

@@ -1,5 +1,6 @@
 package com.wilke.typing;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -32,19 +33,24 @@ public class XVariance {
 	
 	/**
 	 * Method cannot have same name as the generic type information in Java are erased at runtime.
-	 * Hence this method would have the same name as the method above.
+	 * Hence this method would have the same signature as the method above.
 	 */
 //	public static List<?> numElementsWithSameTypeInCommon(List<?> l1, List<?> l2) {
 //		return null;
 //	}
 	
 	public static void covariantArrays() {
-		Object[] objects = new Object[] { new Object() };
-		String[] strings = new String[] { new String("Item")};
+		Object[] objects = { new Object() }; // array literal
+		String[] strings = { new String("Item")};
 		
 		objects = strings; // arrays are covariant
 		
 		assert objects == strings;
+	}
+	
+	// Just an example of how one can restrict a generic type on multiple interfaces.
+	public static class RestrictiveGeneric<T extends Object & Runnable & Serializable> {
+		public T instance;
 	}
 	
 	public static void main(String[] args) {
@@ -53,7 +59,7 @@ public class XVariance {
 		// wont work, primitives cannot be used as generic type
 //		List<int> numbers = new ArrayList<>();
 
-//		// ugly but since arrays are objects ..
+		// ugly but since arrays are objects ..
 		List<int[]> numbers = new ArrayList<>();
 		
 		

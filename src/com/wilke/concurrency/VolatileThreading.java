@@ -19,7 +19,7 @@ public class VolatileThreading {
 
 	static {
 		try {
-			// VM parameter: "-Djava.util.logging.SimpleFormatter.format=%4$s: %5$s%n"
+			// JVM parameter: "-Djava.util.logging.SimpleFormatter.format=%4$s: %5$s%n"
 			FileHandler fh = new FileHandler("/tmp/out.log", false);
 			fh.setFormatter(new SimpleFormatter());
 			logger.addHandler(fh);
