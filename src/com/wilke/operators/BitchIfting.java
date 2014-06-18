@@ -49,11 +49,11 @@ public class BitchIfting {
         System.out.println("playWithLiterals");
         playWithLiterals();
        
-        System.out.print(System.lineSeparator());
+        System.out.println();
         System.out.println("playWithBitwiseOperators");
         playWithBitwiseOperators();
        
-        System.out.print(System.lineSeparator());
+        System.out.println();
         System.out.println("playWithBitshiftOperators");
         playWithBitshiftOperators();
  
