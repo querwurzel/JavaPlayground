@@ -15,7 +15,7 @@ public class VolatileThreading {
 	// volatile ensures visibility but not mutual exclusion
 	private static volatile boolean start;
 	private static volatile boolean shutdown;
-	private static volatile long counter;
+	private static volatile Long counter = new Long(0L);
 
 	static {
 		try {
@@ -34,8 +34,10 @@ public class VolatileThreading {
 		return counter;
 	}
 	
-	public static synchronized long increaseCounter() {
-		return ++counter;
+	public static long increaseCounter() {
+		synchronized (counter) {
+			return ++counter;
+		}
 	}
 	
 	static class Worker implements Runnable {

@@ -10,7 +10,7 @@ public class XVariance {
 	/**
 	 * Unbounded wildcard generic type:
 	 * Implementation must be completely independent of the type
-	 * since no assumptions can be made about the types.
+	 * since no assumptions can be made about the type (except inheriting from Object).
 	 */
 	public static int numElementsInCommon(List<?> l1, List<?> l2) {
 		return Math.min(l1.size(), l2.size());
@@ -41,7 +41,7 @@ public class XVariance {
 	
 	public static void covariantArrays() {
 		Object[] objects = { new Object() }; // array literal
-		String[] strings = { new String("Item")};
+		String[] strings = { "Item" };
 		
 		objects = strings; // arrays are covariant
 		
@@ -74,7 +74,7 @@ public class XVariance {
 		 */
 		
 		// declare a generic type covariant on the generic type
-		List<? extends Object> covariant = new ArrayList<Integer>(Arrays.asList(new Integer(4711)));
+		List<?> covariant = new ArrayList<Integer>(Arrays.asList(new Integer(4711)));
 		
 		// won't compile
 //		Integer it1 = covariant.get(0);
@@ -87,5 +87,6 @@ public class XVariance {
 //		contravariant.add(new Object());
 		// only objects of type Integer (the superclass) can be added to the list as type safety is guaranteed
 		contravariant.add(new Integer(4711));
+//		contravariant.add(new Object()); // nope!
 	}
 }

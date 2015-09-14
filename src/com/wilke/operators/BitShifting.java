@@ -3,7 +3,7 @@ package com.wilke.operators;
 /**
  * JVM parameter: -ea
  */
-public class BitchIfting {
+public class BitShifting {
    
     public static void playWithLiterals() {
         byte d = 7;
